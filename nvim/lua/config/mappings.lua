@@ -8,9 +8,8 @@ vim.keymap.set("n","<C-q>",":q!<CR>", { desc = "Quit" })
 vim.keymap.set("n","<C-s>",":w<CR>", { silent = true, desc = "Save" })
 vim.keymap.set("n","<C-a>","ggVG$", { silent = true, desc = "Select all" })
 -- Buffer Movements
-vim.keymap.set("n","<leader>bn",":bn<CR>", { desc = "Buffer Next" })
-vim.keymap.set("n","<leader>bp",":bp<CR>", { desc = "Buffer Previous" })
-vim.keymap.set("n","<leader>bd",":bd<CR>", { desc = "Buffer Delete" })
+vim.keymap.set("n","<Tab>",":bn<CR>", { desc = "Buffer Next" })
+vim.keymap.set("n","<S-Tab>",":bp<CR>", { desc = "Buffer Previous" })
 -- Move text in Visual Mode
 vim.keymap.set("x","J",":move '>+1<CR>gv-gv", { desc = "Move block down"})
 vim.keymap.set("x","K",":move '<-2<CR>gv-gv", { desc = "Move block up"})
