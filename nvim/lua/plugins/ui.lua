@@ -47,5 +47,17 @@ return {
       require("bufferline").setup {}
       vim.keymap.set("n", "<leader>b", "<cmd>Telescope buffers<cr>", { desc = "List Buffers" })
     end,
+  },
+  {
+    'stevearc/dressing.nvim',
+    opts = {},
+  },
+  {
+    'karb94/neoscroll.nvim',
+    config = function ()
+      require('neoscroll').setup({
+         hide_cursor = false,
+      })
+    end
   }
 }

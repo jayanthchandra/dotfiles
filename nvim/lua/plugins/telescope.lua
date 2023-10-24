@@ -30,8 +30,7 @@ return {
          -- vim.keymap.set("n", "<leader>th", builtin.help_tags, { desc = "Telescope Help" })
           require("telescope").load_extension("undo")
           vim.keymap.set("n","<leader>u","<cmd>Telescope undo<cr>", { desc = "Undo Tree" })
-          vim.keymap.set("n","<leader>e",builtin.diagnostics, { desc = "Show all diagnostics" })
-          vim.keymap.set("n","<leader>c",builtin.commands, { desc = "Command Mode" })
+          vim.keymap.set("n","<leader>cD",builtin.diagnostics, { desc = "Show all diagnostics" })
       end,
    },
 }

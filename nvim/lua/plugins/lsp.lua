@@ -23,6 +23,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
     opts.desc = "LSP: Format"
     vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format, opts)
+    opts.desc = "LSP: Code Action"
+    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+    opts.desc = "LSP: Code Rename"
+    vim.keymap.set("n", "<leader>cn", vim.lsp.buf.rename, opts)
+    opts.desc = "LSP: Show Line Error"
+    vim.keymap.set("n", "<leader>ce", vim.diagnostic.open_float, opts)
   end,
 })
 
@@ -62,7 +68,7 @@ return {
 
       vim.lsp.handlers["textDocument/publishDiagnostics"] =
           vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-            virtual_text = false,
+            virtual_text = true,
           })
     end,
   },
