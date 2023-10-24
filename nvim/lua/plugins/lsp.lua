@@ -8,17 +8,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     local opts = { buffer = ev.buf }
     opts.desc = "LSP: [G]oto [D]efination"
-    vim.keymap.set("n", "<leader>ld", "<cmd>Telescope lsp_definitions<cr>", opts)
+    vim.keymap.set("n", "<leader>cd", "<cmd>Telescope lsp_definitions<cr>", opts)
     opts.desc = "LSP: [G]oto [I]mplementation"
-    vim.keymap.set("n", "<leader>li", "<cmd>Telescope lsp_implementations<cr>", opts)
+    vim.keymap.set("n", "<leader>ci", "<cmd>Telescope lsp_implementations<cr>", opts)
     opts.desc = "LSP: [G]oto [R]eferences"
-    vim.keymap.set("n", "<leader>lr", "<cmd>Telescope lsp_references<cr>", opts)
+    vim.keymap.set("n", "<leader>cr", "<cmd>Telescope lsp_references<cr>", opts)
     opts.desc = "LSP: [I]ncoming [C]all"
     vim.keymap.set("n", "<leader>l[", "<cmd>Telescope lsp_incoming_calls<cr>", opts)
     opts.desc = "LSP: [O]utgoing [C]all"
     vim.keymap.set("n", "<leader>l]", "<cmd>Telescope lsp_outgoing_calls<cr>", opts)
     opts.desc = "LSP: Symbols"
-    vim.keymap.set("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", opts)
+    vim.keymap.set("n", "<leader>cs", "<cmd>Telescope lsp_document_symbols<cr>", opts)
     opts.desc = "LSP: Documentation"
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
     opts.desc = "LSP: Format"
