@@ -1,5 +1,4 @@
 return {
-   {
       "hrsh7th/nvim-cmp",
       dependencies = {
          "hrsh7th/cmp-nvim-lsp",
@@ -41,6 +40,7 @@ return {
                ["<Tab>"] = cmp.mapping.select_next_item(),
                ["<S-Tab>"] = cmp.mapping.select_prev_item(),
                ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+               ["<C-e>"] = cmp.mapping.abort(),
             }),
             sources = cmp.config.sources({
                { name = "nvim_lsp" },
@@ -92,5 +92,4 @@ return {
             ),
          })
       end,
-   },
 }

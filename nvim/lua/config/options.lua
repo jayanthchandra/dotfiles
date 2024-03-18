@@ -1,5 +1,7 @@
 local set = vim.opt
 
+vim.g.toggle_theme_icon = "   "
+
 set.clipboard = "unnamedplus"
 set.completeopt = "noinsert,menuone,noselect"
 set.cursorline = true
@@ -10,7 +12,7 @@ set.hidden = true
 set.inccommand = "split"
 set.mouse = "a"
 set.number = true
-set.relativenumber = true
+set.relativenumber = false 
 set.shiftwidth = 2
 set.smarttab = true
 set.splitbelow = true

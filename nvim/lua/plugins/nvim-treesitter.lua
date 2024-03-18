@@ -17,6 +17,13 @@ return {
           "comment",
           "vimdoc",
           "tsx",
+          "json",
+           "typescript",
+             "markdown",
+             "bash",
+              "dockerfile",
+               "gitignore",
+               "yaml"
         },
         highlight = { enable = true },
         indent = { enable = true },
