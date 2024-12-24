@@ -17,10 +17,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "<leader>l[", "<cmd>Telescope lsp_incoming_calls<cr>", opts)
 		opts.desc = "LSP: [O]utgoing [C]all"
 		vim.keymap.set("n", "<leader>l]", "<cmd>Telescope lsp_outgoing_calls<cr>", opts)
-		opts.desc = "LSP: Symbols"
-		vim.keymap.set("n", "<leader>cs", "<cmd>Telescope lsp_document_symbols<cr>", opts)
 		opts.desc = "LSP: Documentation"
-		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+		vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<cr>", opts)
 		opts.desc = "LSP: Code Action"
 		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 		opts.desc = "LSP: Code Rename"
@@ -35,7 +33,6 @@ local languages = {
 	"html",
 	"cssls",
 	"tsserver",
-	"emmet_ls",
 	"eslint",
 	"pyright",
 	"texlab",
@@ -43,9 +40,9 @@ local languages = {
 
 return {
 	"neovim/nvim-lspconfig",
-	dependencies = { "hrsh7th/cmp-nvim-lsp" },
+	dependencies = { "saghen/blink.cmp" },
 	config = function()
-		local capabilities = require("cmp_nvim_lsp").default_capabilities()
+		local capabilities = require("blink.cmp").get_lsp_capabilities()
 		require("lspconfig").lua_ls.setup({
 			capabilities = capabilities,
 			settings = {

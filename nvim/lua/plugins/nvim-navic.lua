@@ -1,3 +1,4 @@
+-- Navic provides a breadcrumb
 return {
 	"SmiteshP/nvim-navic",
 	event = "LspAttach",

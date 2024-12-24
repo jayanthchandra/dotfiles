@@ -1,3 +1,4 @@
+-- For Syntax Tree
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -24,6 +25,7 @@ return {
 					"dockerfile",
 					"gitignore",
 					"yaml",
+					"markdown_inline",
 				},
 				highlight = { enable = true },
 				indent = { enable = true },
