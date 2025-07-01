@@ -8,69 +8,44 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_SAVE_NO_DUPS
 setopt INC_APPEND_HISTORY
 
-# Should be called before compinitzmodload zsh/complist
-autoload -U compinit; compinit
-_comp_options+=(globdots) # With hidden files
-# Define completers
-zstyle ':completion:*' completer _extensions _complete _approximate
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word 
 
-# Use cache for commands using cache
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/.zcompcache"
-# Complete the alias when _expand_alias is used as a function
-zstyle ':completion:*' complete true
-zle -C alias-expension complete-word _generic
-bindkey '^Xa' alias-expension
-zstyle ':completion:alias-expension:*' completer _expand_alias
+# Custom ZSH
+autoload -Uz compinit && compinit
 
-# Use cache for commands which use it
+source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.config/zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
-# Allow you to select in a menu
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*:git-checkout:*' sort false
+zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' menu select
-
-# Autocomplete options for cd instead of directory stack
-zstyle ':completion:*' complete-options true
-
-zstyle ':completion:*' file-sort modification
-
-
 zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %d (errors: %e) -!%f'
 zstyle ':completion:*:*:*:*:descriptions' format '%F{blue}-- %D %d --%f'
 zstyle ':completion:*:*:*:*:messages' format ' %F{purple} -- %d --%f'
 zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
-# zstyle ':completion:*:default' list-prompt '%S%M matches%s'
-# Colors for files and directory
-zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' complete-options true
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/.zcompcache"
+# Complete the alias when _expand_alias is used as a function
+zstyle ':completion:*' complete true
+zstyle ':completion:*' file-sort modification
 
-# Only display some tags for the command cd
-zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-directories
-# zstyle ':completion:*:complete:git:argument-1:' tag-order !aliases
-
-# Required for completion to be in good groups (named after the tags)
-zstyle ':completion:*' group-name ''
-
-zstyle ':completion:*:*:-command-:*:*' group-order aliases builtins functions commands
-
-# See ZSHCOMPWID "completion matching control"
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-
-zstyle ':completion:*' keep-prefix true
-
-PROMPT='%(?.%F{green}√.%F{red}?%?)%f %B%F{240}%1~%f%b %# '
-autoload -Uz vcs_info
-precmd_vcs_info() { vcs_info }
-precmd_functions+=( precmd_vcs_info )
-setopt prompt_subst
-RPROMPT=\$vcs_info_msg_0_
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' unstagedstr ' *'
-zstyle ':vcs_info:*' stagedstr ' +'
-zstyle ':vcs_info:git:*' formats '%F{178}{%b}%F{red}%u %F{240}%r%f'
-zstyle ':vcs_info:*' enable git
-
-# Custom ZSH
-source $HOME/.config/zsh/klub.zsh
-source $HOME/.config/zsh/alias.zsh
-
+export PATH=/opt/homebrew/bin:$PATH
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+eval "$(fzf --zsh)"
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always -n --line-range :500 {}'"
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+
+eval "$(atuin init zsh)"
+
+# Zoxide
+eval "$(zoxide init --cmd cd zsh)"
+
+. "$HOME/.local/bin/env"
+
+eval "$(starship init zsh)"
